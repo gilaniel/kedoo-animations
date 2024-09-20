@@ -1,0 +1,250 @@
+.background {
+  --color-main: hsl(39, 42%, 53%);
+  --color-main-darker: hsl(39, 42%, 5%);
+  --color-main-dark: hsl(39, 42%, 15%);
+  --color-main-light: hsl(39, 42%, 45%);
+  --color-main-lighter: hsl(39, 55%, 60%);
+  --color-background: #090909;
+  --color-background-gradient: #3c311f;
+
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-background);
+
+  --tr-size: calc(3vw + 3vh);
+
+  --a-t-bg-await: 500ms;
+  --a-t-logo-spin: 2000ms;
+  --a-t-letter-fall-delay: 75ms;
+  --a-t-disappear-delay: calc(var(--a-t-bg-await) + var(--a-t-logo-spin) + (var(--a-t-letter-fall-delay) * 6) + 1000ms);
+  --a-t-appear-main-logo-delay: calc(var(--a-t-disappear-delay) + var(--a-t-bg-await) + 200ms);
+  --a-t-apeear-main-logo: 2000ms;
+}
+
+.container {
+  --a-t-tr-start-delay: var(--a-t-bg-await);
+  --a-t-tr-end-delay: var(--a-t-disappear-delay);
+  --a-t-tr-start: calc(var(--a-t-disappear-delay) - var(--a-t-bg-await));
+  --a-t-tr-end: var(--a-t-apeear-main-logo);
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, #3c311f 0%, var(--color-background) 75%);
+  animation: background-fill 400ms ease-out 100ms forwards;
+}
+
+/* @media (max-width: 726px) {
+  .container {
+    transform: rotate(90deg);
+  }
+} */
+
+@keyframes background-fill {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.trWb {
+  position: absolute;
+  width: calc(var(--tr-size) * 3);
+  height: calc(var(--tr-size) * 0.8660254 * 3);
+  transform-origin: calc(var(--tr-size) * 3 * 0.5) calc(var(--tr-size) * 0.8660254 * 3 * 0.66666);
+  filter: brightness(0.8) blur(1px);
+  animation: tr-move 400ms ease-out 100ms forwards;
+}
+
+.trWb::before,
+.trWb::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: skewX(25deg) scale(0.8);
+  filter: opacity(0.5) brightness(1.5);
+}
+
+.trWb::before {
+  background-image: linear-gradient(135deg, var(--color-main-light) 0%, var(--color-main-dark) 65%, var(--color-main-darker) 100%);
+}
+
+.trWb::after {
+  translate: -1.25% 1.25%;
+  background-image: linear-gradient(340deg, var(--color-main-dark) 0%, var(--color-main-darker) 100%);
+  filter: brightness(0.8);
+}
+
+.container .trWb:nth-child(1) {
+  --start-i: -35% auto auto 40%;
+  --start-t: rotate(0deg) scale(0.8) translate(-50%, 0);
+  --mid-i: 5% auto auto 40%;
+  --mid-t: rotate(145deg) scale(0.8) translate(-50%, 0);
+  --end-i: 3% auto auto 40%;
+  --end-t: rotate(125deg) scale(0.8) translate(-50%, 0) translate(-20%, 25%);
+}
+
+
+.container .trWb:nth-child(2) {
+  --start-i: 10% -35% auto auto;
+  --start-t: rotate(90deg) scale(0.8) translate(60%, 60%);
+  --mid-i: 20% 5% auto auto;
+  --mid-t: rotate(-60deg) scale(0.8) translate(60%, 60%);
+  --end-i: 10% 1% auto auto;
+  --end-t: rotate(-45deg) scale(0.8) translate(60%, 60%);
+}
+
+.container .trWb:nth-child(3) {
+  --start-i: auto -35% 30% auto;
+  --start-t: rotate(-90deg) scale(1.35);
+  --mid-i: auto 2% 30% auto;
+  --mid-t: rotate(-15deg) scale(1.35);
+  --end-i: auto 0% 30% auto;
+  --end-t: rotate(-10deg) scale(1.35) translate(40%, 0);
+}
+
+.container .trWb:nth-child(4) {
+  --start-i: auto 60% -35% auto;
+  --start-t: rotate(-30deg);
+  --mid-i: auto 40% 4% auto;
+  --mid-t: rotate(-60deg);
+  --end-i: auto 30% 3% auto;
+  --end-t: rotate(-85deg) translate(-20%, 0%);
+  filter: blur(2px);
+}
+
+.container .trWb:nth-child(5) {
+  --start-i: auto auto 14% -35%;
+  --start-t: rotate(50deg) scale(1.1);
+  --mid-i: auto auto 16% 6%;
+  --mid-t: rotate(-40deg) scale(1.1);
+  --end-i: auto auto 9% 7%;
+  --end-t: rotate(-25deg) scale(1.1) translate(-10%, 50%);
+}
+
+.container .trWb:nth-child(6) {
+  --start-i: 0% auto auto -35%;
+  --start-t: rotate(110deg) scale(1.5) translate(25%, 25%);
+  --mid-i: 10% auto auto 12%;
+  --mid-t: rotate(120deg) scale(1.5) translate(25%, 25%);
+  --end-i: 10% auto auto 10%;
+  --end-t: rotate(130deg) scale(1.5) translate(35%, 50%);
+}
+
+.trFl {
+  position: absolute;
+  width: calc(var(--tr-size) * 3);
+  height: calc(var(--tr-size) * 0.8660254 * 2.4);
+  transform-origin: calc(var(--tr-size) * 3 * 0.5) calc(var(--tr-size) * 0.8660254 * 2.4 * 0.66666);
+  opacity: 0.5;
+  filter: brightness(1.5) blur(5px);
+}
+
+.trFl::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background-image: linear-gradient(var(--color-main-light), var(--color-main-darker));
+}
+
+.container .trFl:nth-child(7) {
+  --start-i: -35% -35% auto auto;
+  --start-t: rotate(460deg);
+  --mid-i: 5% 12% auto auto;
+  --mid-t: rotate(175deg);
+  --end-i: 3% 10% auto auto;
+  --end-t: rotate(155deg);
+}
+
+.container .trFl:nth-child(8) {
+  --start-i: auto -35% 0% auto;
+  --start-t: rotate(-45deg) scale(0.8);
+  --mid-i: auto 10% 15% auto;
+  --mid-t: rotate(-50deg) scale(0.8);
+  --end-i: auto 2% 17% auto;
+  --end-t: rotate(-50deg) scale(0.8);
+  z-index: -1;
+}
+
+.container .trFl:nth-child(9) {
+  --start-i: auto 50% -35% auto;
+  --start-t: rotate(30deg) scale(0.8);
+  --mid-i: auto 25% 10% auto;
+  --mid-t: rotate(30deg) scale(0.8);
+  --end-i: auto 10% 7% auto;
+  --end-t: rotate(30deg) scale(0.8) translate(10%, 70%);
+}
+
+.container .trFl:nth-child(10) {
+  --start-i: auto auto -35% 10%;
+  --start-t: rotate(45deg) scale(0.5);
+  --mid-i: auto auto 6% 25%;
+  --mid-t: rotate(50deg) scale(0.5);
+  --end-i: auto auto 3% 25%;
+  --end-t: rotate(50deg) scale(0.5) translate(50%, 50%);
+  z-index: -1;
+}
+
+.container .trFl:nth-child(11) {
+  --start-i: auto auto 35% -35%;
+  --start-t: rotate(120deg) scale(0.8);
+  --mid-i: auto auto 37% 3%;
+  --mid-t: rotate(118deg) scale(0.8);
+  --end-i: auto auto 35% 1%;
+  --end-t: rotate(120deg) scale(0.8) translate(20%, 60%);
+}
+
+.container .trFl:nth-child(12) {
+  --start-i: -35% auto auto -35%;
+  --start-t: rotate(180deg) scale(0.8);
+  --mid-i: 6% auto auto 20%;
+  --mid-t: rotate(190deg) scale(0.8);
+  --end-i: 5% auto auto 15%;
+  --end-t: rotate(200deg) scale(0.8) translate(0, 50%);
+}
+
+.container .trFl,
+.container .trWb {
+  inset: var(--start-i);
+  transform: var(--start-t);
+  animation:
+    tr-start var(--a-t-tr-start) ease-out var(--a-t-tr-start-delay) forwards,
+    tr-end var(--a-t-tr-end) ease-in-out var(--a-t-tr-end-delay) forwards;
+}
+
+
+@keyframes tr-start {
+  from {
+    inset: var(--start-i);
+    transform: var(--start-t);
+  }
+
+  to {
+    inset: var(--mid-i);
+    transform: var(--mid-t);
+  }
+}
+
+@keyframes tr-end {
+  from {
+    inset: var(--mid-i);
+    transform: var(--mid-t);
+  }
+
+  to {
+    inset: var(--end-i);
+    transform: var(--end-t);
+  }
+}
